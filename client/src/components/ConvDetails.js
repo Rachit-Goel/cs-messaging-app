@@ -113,7 +113,7 @@ export default function ConvDetails({
   }, [messages]);
 
   const handleUnAllotClick = async () => {
-    // const res = await unAllot({ conversationId: currentChat._id })
+    const res = await unAllot({ conversationId: currentChat._id })
     update(Math.random);
     setSelectedConvo({});
     setCurrentChat({});
