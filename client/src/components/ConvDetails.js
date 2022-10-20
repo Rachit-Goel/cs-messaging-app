@@ -4,6 +4,7 @@ import React, { useEffect, useState, useRef } from "react";
 import SendIcon from "@mui/icons-material/Send";
 import { EachMessage } from "./EachMessage.js";
 import axios from "axios";
+import { unAllot } from '../utils/api'
 // import { io } from "socket.io-client";
 
 export default function ConvDetails({
