@@ -19,16 +19,22 @@ const getUser = (userId) => {
 //for updating Non alloted customers queries to all agent's side
 
 const getAgents = () => {
-    return users.filter((user) => { return user.userId.includes("A"); });
+    return users.filter((user) => {  
+        if(user.userId != null){
+            return user.userId.includes("A");
+        }
+         
+    });
 };
 
 module.exports = function(io) {
     io.on("connection", function(socket) {
         //when connect
-        console.log("a user connected.");
+        // console.log("a user connected.");
 
         //take userId and socketId from user
         socket.on("addUser", (userId) => {
+            console.log(userId, socket.id)
             addUser(userId, socket.id);
             io.emit("getUsers", users);
         });
@@ -36,27 +42,33 @@ module.exports = function(io) {
         //send and get message
         socket.on("sendMessage", ({ senderId, receiverId, text }) => {
             const user = getUser(receiverId);
-            io.to(user.socketId).emit("getMessage", {
-                senderId,
-                text,
-            });
+                console.log(user)
+            if(user){
+                console.log(senderId, user)
+                io.to(user.socketId).emit("getMessage", {
+                    senderId,
+                    text,
+                });
+            }
+            
         });
 
         //when disconnect
         socket.on("disconnect", () => {
-            console.log("a user disconnected!");
+            // console.log("a user disconnected!");
             removeUser(socket.id);
             io.emit("getUsers", users);
         });
 
         //for New created query by customer
-        socket.on("newQuery", ({ senderId, text }) => {
+        socket.on("newQuery", (obj) => {
+
             const agents = getAgents();
+                            console.log(agents, obj)
+
             agents.forEach((user) => {
-                io.to(user.socketId).emit("getNewQuery", {
-                    senderId,
-                    text,
-                });
+                console.log(user, obj)
+                io.to(user.socketId).emit("getNewQuery", obj);
             });
         });
     });

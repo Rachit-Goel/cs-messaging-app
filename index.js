@@ -2,7 +2,6 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
-
 const app = express();
 dotenv.config();
 
@@ -14,7 +13,11 @@ const io = require('socket.io')(http, {
     }
 });
 require('./socket')(io)
-
+const corsOptions ={
+   origin:'*', 
+   credentials:true,            //access-control-allow-credentials:true
+   optionSuccessStatus:200,
+}
 const conversationRoute = require("./routes/conversation");
 const messageRoute = require("./routes/message");
 const customerRoute = require("./routes/customer");
@@ -32,7 +35,7 @@ app.get("/", (req,res)=>{
   res.send("API server is running");
 });
 
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use("/api/conversations", conversationRoute);
@@ -41,6 +44,6 @@ app.use("/api/customers", customerRoute);
 app.use("/api/agents", agentRoute);
 
 
-app.listen(process.env.PORT || 5000, () => {
+http.listen(process.env.PORT || 5000, () => {
   console.log(`server is running & listening on port : ${process.env.PORT || 5000}` );
 });
