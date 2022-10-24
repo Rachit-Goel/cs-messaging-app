@@ -11,9 +11,9 @@ Both server & frontend App are hosted on:
 ### Running Locally
 
 #### Clone repo 
-    ```
+    
     git clone https://github.com/Rachit-Goel/cs-messaging-app.git
-    ```
+   
 
 #### To run Server
 In the directory, "cs-messaging-app-master":
