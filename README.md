@@ -4,8 +4,9 @@
 
 Both server & frontend App are hosted on:
 
-- server: [https://cs-messaging-app-server.herokuapp.com](https://cs-messaging-app-server.herokuapp.com)
 - client: [https://admirable-caramel-5b6f46.netlify.app](https://admirable-caramel-5b6f46.netlify.app)
+- server: [https://cs-messaging-app-server.herokuapp.com](https://cs-messaging-app-server.herokuapp.com)
+- postman APIs collection: [https://www.postman.com/...](https://www.postman.com/planetary-equinox-821652/workspace/branch-assignment-by-rachit-goel/collection/19949199-eb06d1c9-411a-4dc4-9798-f9d51adc7a9c?action=share&creator=19949199) You can set environment as heroku server or local server.
 
 ### Running Locally
 
