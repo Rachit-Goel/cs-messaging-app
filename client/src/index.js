@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
 import axios from "axios";
 
-axios.defaults.baseURL = "https://cs-messaging-app-server.herokuapp.com";
+axios.defaults.baseURL = "https://cs-mesaging-app.onrender.com";
 // uncomment the below line & comment the above line - if you are running local server.
 // axios.defaults.baseURL = "http://localhost:5000";
 
